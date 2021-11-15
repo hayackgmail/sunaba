@@ -2,6 +2,9 @@
     "extensions": {
         "@json.schemas": []
     },
+    "instance": {
+        "@automaticShutdown": "30"
+    },
     "language": {
         "tern_defs": {
             "json()": {
@@ -19,6 +22,10 @@
     },
     "launchconfigurations": {
         "@currentconfig": ""
+    },
+    "php": {
+        "@formatOnSave": true,
+        "@formatter": "php-cs-fixer fix $file"
     },
     "python": {
         "@path": "/usr/local/lib/python3.4/dist-packages:/usr/local/lib/python3.5/dist-packages"

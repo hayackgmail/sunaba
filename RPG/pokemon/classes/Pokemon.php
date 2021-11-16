@@ -18,7 +18,7 @@ class Pokemon extends Lives
     }
     /*
     public function getName()
-    {  //プライベートの変数を呼び出す　//HPは初期値があるから返さなくておK
+    {  //プライベートの変数を呼び出す　//HPは初期値があるから返さなくておけだお
         return $this->name;
     }
     public function getHitPoint()

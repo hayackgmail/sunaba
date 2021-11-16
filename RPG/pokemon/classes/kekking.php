@@ -1,9 +1,9 @@
 <?php
 
-class Kekking extends Pikatyuu
+class Kekking extends Pokemon
 {
     const MAX_HITPOINT = 150;
-    private $hitPoint = self::MAX_HITPOINT; //selfｈリザードン自身のＨＰをみるということ
+    private $hitPoint = self::MAX_HITPOINT; //selfはケッキング自身のＨＰをみるということ
     private $attackPoint = 30;
     public function __construct($name)
     {

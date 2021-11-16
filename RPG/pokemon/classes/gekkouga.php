@@ -1,10 +1,10 @@
 <?php
-class Gekkouga extends Pikatyuu
+class Gekkouga extends Pokemon
 {
-    const MAX_HITPOINT=80;
-    private $hitPoint=80;
-    private $attackPoint=5;
-    private $special = 30;
+    const MAX_HITPOINT=100;
+    private $hitPoint=100;
+    private $attackPoint=20;
+    private $special = 10;
     public function __construct($name)
     {
         parent::__construct($name, $this->hitPoint, $this->attackPoint);
@@ -15,6 +15,8 @@ class Gekkouga extends Pikatyuu
         if (rand(1, 2) === 1) {
             // スキルの発動
             echo "『" .$this->getName() . "』の『みずしゅりけん』！！".PHP_EOL;
+            echo $enemy->getName() . " に " . $this->special. " のダメージ！".PHP_EOL;
+            $enemy->tookDamage($this->special);
             echo $enemy->getName() . " に " . $this->special. " のダメージ！".PHP_EOL;
             $enemy->tookDamage($this->special);
         } else {

@@ -1,5 +1,5 @@
 <?php
-class Hapinesu extends Pikatyuu
+class Hapinesu extends Pokemon
 {
     const MAX_HITPOINT=80;
     private $hitPoint=80;
@@ -10,12 +10,12 @@ class Hapinesu extends Pikatyuu
         parent::__construct($name, $this->hitPoint, $this->attackPoint);
     }
     
-    public function doAttackHapinesu($enemy, $pikatyuu)
+    public function doAttackHapinesu($enemy, $pokemon)
     {
         if (rand(1, 2) === 1) {
             echo "『" .$this->getName() . "』のタマゴうみ！".PHP_EOL;
-            echo $pikatyuu->getName() . " のHPを " . $this->special * 1.5 . " 回復！".PHP_EOL;
-            $pikatyuu->recoveryDamage($this->special * 1.5, $pikatyuu);
+            echo $pokemon->getName() . " のHPを " . $this->special * 1.5 . " 回復！".PHP_EOL;
+            $pokemon->recoveryDamage($this->special * 1.5, $pokemon);
         } else {
             echo "『" .$this->getName() . "』のタマゴばくだん！".PHP_EOL;
             //this 自分自身、つまりPokemonクラス　

@@ -7,20 +7,9 @@ class Gekkouga extends Pikatyuu
     private $special = 30;
     public function __construct($name)
     {
-        $this->name = $name;
+        parent::__construct($name, $this->hitPoint, $this->attackPoint);
     }
-    public function getName()
-    {
-        return $this->name;
-    }
-    public function getHitPoint()
-    {
-        return $this->hitPoint;
-    }
-    public function getAttackPoint()
-    {
-        return $this->attackPoint;
-    }
+   
     public function doAttack($enemy)
     {
         if (rand(1, 2) === 1) {

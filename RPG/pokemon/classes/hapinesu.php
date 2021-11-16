@@ -7,26 +7,15 @@ class Hapinesu extends Pikatyuu
     private $special = 30;
     public function __construct($name)
     {
-        $this->name = $name;
+        parent::__construct($name, $this->hitPoint, $this->attackPoint);
     }
-    public function getName()
-    {
-        return $this->name;
-    }
-    public function getHitPoint()
-    {
-        return $this->hitPoint;
-    }
-    public function getAttackPoint()
-    {
-        return $this->attackPoint;
-    }
+    
     public function doAttackHapinesu($enemy, $pikatyuu)
     {
         if (rand(1, 2) === 1) {
-            echo "『" .$this->getName() . "』のタマゴうみ！\n";
-            echo $pikatyuu->getName() . " のHPを " . $this->intelligence * 1.5 . " 回復！\n";
-            $pikatyuu->recoveryDamage($this->intelligence * 1.5, $pikatyuu);
+            echo "『" .$this->getName() . "』のタマゴうみ！".PHP_EOL;
+            echo $pikatyuu->getName() . " のHPを " . $this->special * 1.5 . " 回復！".PHP_EOL;
+            $pikatyuu->recoveryDamage($this->special * 1.5, $pikatyuu);
         } else {
             echo "『" .$this->getName() . "』のタマゴばくだん！".PHP_EOL;
             //this 自分自身、つまりPokemonクラス　

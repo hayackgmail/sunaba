@@ -5,9 +5,11 @@ class Enemy
     public $name; // 敵の名前
     public $hitPoint = 100; // 現在のHP
     public $attackPoint = 10; // 攻撃力
-    public function __construct($name)
+    public function __construct($name, $hitPoint, $attackPoint) // ここを変更
     {
         $this->name = $name;
+        $this->hitPoint = $hitPoint;
+        $this->attackPoint = $attackPoint; // この行を追加
     }
     public function getName()
     {

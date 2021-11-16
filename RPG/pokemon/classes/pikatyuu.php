@@ -5,13 +5,16 @@ class Pikatyuu
     private $name;
     private $hitPoint=100;
     private $attackPoint=20;
+
+    public function __construct($name, $hitPoint = 100, $attackPoint = 20)
+    {
+        $this->name = $name;
+        $this->hitPoint = $hitPoint;
+        $this->attackPoint = $attackPoint;
+    }
     public function getName()
     {  //プライベートの変数を呼び出す　//HPは初期値があるから返さなくておK
         return $this->name;
-    }
-    public function __construct($name)
-    {
-        $this->name = $name;
     }
     public function getHitPoint()
     {

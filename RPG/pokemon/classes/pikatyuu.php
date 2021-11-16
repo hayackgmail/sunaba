@@ -1,36 +1,35 @@
 <?php
-class Pikatyuu
+class Pikatyuu extends Pokemon
 {
     const MAX_HITPOINT=100; //定数の定義は大文字だお
     private $name;
     private $hitPoint=100;
-    private $attackPoint=20;
+    private $attackPoint=5;
+    private $special=20;
 
-    public function __construct($name, $hitPoint = 100, $attackPoint = 20)
+    public function __construct($name)
     {
-        $this->name = $name;
-        $this->hitPoint = $hitPoint;
-        $this->attackPoint = $attackPoint;
+        parent::__construct($name, $this->hitPoint, $this->attackPoint);
     }
-    public function getName()
-    {  //プライベートの変数を呼び出す　//HPは初期値があるから返さなくておK
-        return $this->name;
-    }
-    public function getHitPoint()
+   
+    public function doAttack($enemies)
     {
-        return $this->hitPoint;
-    }
-    public function getAttackPoint()
-    {
-        return $this->attackPoint;
-    }
-    public function doAttack($enemy)
-    {
-        echo "『" .$this->getName() . "』の10万ボルト！".PHP_EOL;
-        //this 自分自身、つまりPokemonクラス　
-        //this->name Pokemonクラスの$nameを参照していること
-         echo "【" . $enemy->getName() . "】に " . $this->attackPoint . " のダメージ！".PHP_EOL; //PHP_EOLで改行するンゴ
-        $enemy->tookDamage($this->attackPoint);
+        // チェック１：自身のHPが0かどうか
+        if ($this->hitPoint <= 0) {
+            return false;
+        }
+        $enemyIndex = rand(0, count($enemies) - 1); // 添字は0から始まるので、-1する
+        $enemy = $enemies[$enemyIndex];
+        
+        if (rand(1, 2) === 1) {
+            // スキルの発動
+            echo "『" .$this->getName() . "』の『10まんボルト』！！".PHP_EOL;
+            echo $enemy->getName() . " に " . $this->special . " のダメージ！".PHP_EOL;
+            $enemy->tookDamage($this->special);
+        } else {
+            parent::doAttack($enemies); // ここを編集
+        }
+        return true;
     }
     public function tookDamage($damage)
     {

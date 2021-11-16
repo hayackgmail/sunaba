@@ -10,8 +10,19 @@ class Hapinesu extends Pokemon
         parent::__construct($name, $this->hitPoint, $this->attackPoint);
     }
     
-    public function doAttackHapinesu($enemy, $pokemon)
+    public function doAttackHapinesu($enemies, $pokemons)
     {
+        // チェック１：自身のHPが0かどうか
+        if ($this->hitPoint <= 0) {
+            return false;
+        }
+
+        $pokemonIndex = rand(0, count($pokemons) - 1); // 添字は0から始まるので、-1する
+        $pokemon = $pokemons[$pokemonIndex];
+
+        $enemyIndex = rand(0, count($enemies) - 1); // 添字は0から始まるので、-1する
+        $enemy = $enemies[$enemyIndex];
+        
         if (rand(1, 2) === 1) {
             echo "『" .$this->getName() . "』のタマゴうみ！".PHP_EOL;
             echo $pokemon->getName() . " のHPを " . $this->special * 1.5 . " 回復！".PHP_EOL;

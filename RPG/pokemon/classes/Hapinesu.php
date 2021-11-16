@@ -1,9 +1,9 @@
 <?php
 class Hapinesu extends Pokemon
 {
-    const MAX_HITPOINT=80;
-    private $hitPoint=80;
-    private $attackPoint=10;
+    const MAX_HITPOINT=200;
+    private $hitPoint=200;
+    private $attackPoint=5;
     private $special = 30;
     public function __construct($name)
     {

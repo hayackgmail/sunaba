@@ -1,4 +1,5 @@
 <?php
+/*
 require_once('./classes/Lives.php');
 require_once('classes/pokemon.php');
 require_once('classes/pikatyuu.php');
@@ -7,35 +8,44 @@ require_once('classes/gekkouga.php');
 require_once('classes/hapinesu.php');
 require_once('classes/enemy.php');
 require_once('./classes/Message.php');
+*/
+require_once('./lib/Loader.php');
+require_once('./lib/Utility.php');
+
+// オートロード
+$loader = new Loader();
+// classesフォルダの中身をロード対象ディレクトリとして登録
+$loader->regDirectory(__DIR__ . '/classes');
+ $loader->regDirectory(__DIR__ . '/classes/constants'); // この行を追加
+$loader->register();
+var_dump($loader);
 $members = array();
+/*
 $members[] = new Pikatyuu('ピカチュウ');
 $members[] = new Kekking('ケッキング');
 $members[] = new Gekkouga('ゲッコウガ');
 $members[] = new Hapinesu('ハピナス');
+*/
+//$members[] = new Pikatyuu(CharacterName::Pikatyuu);
+$members[] = Pikatyuu::getInstance(CharacterName::Pikatyuu); // この行を追加
+$members[] = new Kekking(CharacterName::Kekking);
+$members[] = new Gekkouga(CharacterName::Gekkouga);
+$members[] = new Hapinesu(CharacterName::Hapinesu);
 $enemies = array();
-$enemies[] = new Enemy('イワーク', 75, 10);
-$enemies[] = new Enemy('カイロス', 120, 25);
+/*
+$enemies[] = new Enemy('イワーク', 100, 10);
+$enemies[] = new Enemy('カイロス', 100, 25);
 $enemies[] = new Enemy('ルージュラ', 100, 20);
+*/
+$enemies[] = new Enemy(EnemyName::Iwaku, 100, 10);
+$enemies[] = new Enemy(EnemyName::Kairosu, 100, 25);
+$enemies[] = new Enemy(EnemyName::Ruuzyura, 100, 20);
 $messageObj = new Message;
 $turn = 1;
 $isFinishFlg = false;
 
   // 終了条件の判定
-  function isFinish($objects)
-  {
-      $deathCnt = 0; // HPが0以下の仲間の数
-      foreach ($objects as $object) {
-          // １人でもHPが０を超えていたらfalseを返す
-          if ($object->getHitPoint() > 0) {
-              return false;
-          }
-          $deathCnt++;
-      }
-      // 仲間の数が死亡数(HPが０以下の数)と同じであればtrueを返す
-      if ($deathCnt === count($objects)) {
-          return true;
-      }
-  }
+
 while (!$isFinishFlg) {
     echo $turn . 'ターン目' . PHP_EOL;
     // 仲間の表示
@@ -98,38 +108,38 @@ while (!$isFinishFlg) {
       $gekkouga->doAttack($iwaku);
       $hapinesu->doAttackHapinesu($iwaku, $pikatyuu);
       $iwaku->doAttack($pikatyuu);*/
-/*
-    // 仲間の全滅チェック
-    $deathCnt = 0; // HPが0以下の仲間の数
-    foreach ($members as $member) {
-        if ($member->getHitPoint() > 0) {
-            $isFinishFlg = false;
+    /*
+        // 仲間の全滅チェック
+        $deathCnt = 0; // HPが0以下の仲間の数
+        foreach ($members as $member) {
+            if ($member->getHitPoint() > 0) {
+                $isFinishFlg = false;
+                break;
+            }
+            $deathCnt++;
+        }
+        if ($deathCnt === count($members)) {
+            $isFinishFlg = true;
+            echo "GAME OVER ....".PHP_EOL;
             break;
         }
-        $deathCnt++;
-    }
-    if ($deathCnt === count($members)) {
-        $isFinishFlg = true;
-        echo "GAME OVER ....".PHP_EOL;
-        break;
-    }
-    // 敵の全滅チェック
-    $deathCnt = 0; // HPが0以下の敵の数
-    foreach ($enemies as $enemy) {
-        if ($enemy->getHitPoint() > 0) {
-            $isFinishFlg = false;
-            break;
+        // 敵の全滅チェック
+        $deathCnt = 0; // HPが0以下の敵の数
+        foreach ($enemies as $enemy) {
+            if ($enemy->getHitPoint() > 0) {
+                $isFinishFlg = false;
+                break;
+            }
+            $deathCnt++;
         }
-        $deathCnt++;
-    }
-    if ($deathCnt === count($enemies)) {
-        $isFinishFlg = true;
-        echo "♪♪♪ファンファーレ♪♪♪".PHP_EOL;
-        break;
-    }
+        if ($deathCnt === count($enemies)) {
+            $isFinishFlg = true;
+            echo "♪♪♪ファンファーレ♪♪♪".PHP_EOL;
+            break;
+        }    */
+    
     $turn++;
     echo PHP_EOL;
-    */
 }
 
 echo '戦闘終了！'.PHP_EOL;

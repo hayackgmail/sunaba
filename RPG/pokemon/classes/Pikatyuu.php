@@ -1,15 +1,26 @@
 <?php
 class Pikatyuu extends Pokemon
 {
-    const MAX_HITPOINT=100; //定数の定義は大文字だお
+    const MAX_HITPOINT=80; //定数の定義は大文字だお
     private $name;
-    private $hitPoint=100;
+    private $hitPoint=80;
     private $attackPoint=5;
     private $special=20;
+    private static $instance;
 
-    public function __construct($name)
+    //public function __construct($name)
+    private function __construct($name) // コンストラクタはprivateに
     {
         parent::__construct($name, $this->hitPoint, $this->attackPoint);
+    }
+    // シングルトンで常にインスタンスは一つしか生成しない
+    public static function getInstance($name)
+    {
+        if (empty(self::$instance)) {
+            self::$instance = new Pikatyuu($name);
+        }
+ 
+        return self::$instance;
     }
    
     public function doAttack($enemies)

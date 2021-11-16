@@ -1,7 +1,7 @@
 <?php
 class Enemy extends Lives
 {
-    const MAX_HITPOINT = 100; // 最大HPの定義 定数
+    const MAX_HITPOINT = 100;    // 最大HPの定義 定数
     /*
     public $name; // 敵の名前
     public $hitPoint = 100; // 現在のHP
